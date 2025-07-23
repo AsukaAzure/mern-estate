@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userrouter from "./routes/user.route.js";
+import authrouter from "./routes/auth.route.js";
 dotenv.config();
 
 mongoose
@@ -14,6 +16,11 @@ mongoose
  
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Server is runnning in 3000");
+app.use(express.json());
+
+app.listen(3001, () => {
+  console.log("Server is runnning in 3001");
 });
+
+app.use("/api/user", userrouter);
+app.use("/api/auth", authrouter);
